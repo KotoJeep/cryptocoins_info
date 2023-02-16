@@ -8,6 +8,8 @@ storybook-static
 /.pnp
 .pnp.js
 
+/.idea
+
 # testing
 /coverage
 
