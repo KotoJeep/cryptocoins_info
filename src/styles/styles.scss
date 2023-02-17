@@ -3,8 +3,15 @@
 @import './EudoxusSans/fonts';
 @import './Avenir/fonts';
 
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Circular Std', sans-serif;
+}
+
 html, body {
-  font-family: 'Roboto';
+  font-size: 14px;
 }
 
 :root{

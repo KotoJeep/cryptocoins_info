@@ -1,0 +1,20 @@
+.button {
+  --bg-prymary: #DFE2E4;
+  --color-text-primary: #343A40;
+
+  padding: 8px;
+  display: flex;
+  background-color: var(--bg-prymary);
+  border: none;
+  border-radius: 6px;
+  transition: all .2s;
+
+  font-style: normal;
+  font-weight: 450;
+  font-size: 14px;
+  line-height: 18px;
+
+  &_disabled {
+    opacity: .5;
+  }
+}
