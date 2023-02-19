@@ -4,6 +4,8 @@ import './styles/styles.scss';
 import {Loader, LoaderSize} from "./components/Loader/Loader";
 import {WithLoader} from "./components/WithLoader/WithLoader";
 import {Card} from "./components/Card/Card";
+import {Input} from "./components/Input/Input";
+
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -11,6 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <div style={{margin:'200px'}}>
+            <Input placeholder={'text'} disabled={false} value={'text'} onChange={()=>console.log('click!')}/>
         </div>
     </React.StrictMode>
 );

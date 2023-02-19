@@ -1,4 +1,6 @@
 import React from 'react';
+import cn from "classnames";
+import './Input.scss'
 
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>,
     'onChange' | 'value'> & {
@@ -8,10 +10,12 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>,
     onChange: (value: string) => void;
 };
 
-export const Input: React.FC<InputProps> = ({value, onChange, ...rest}) => {
+export const Input: React.FC<InputProps> = ({value='', onChange, ...props}) => {
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         onChange(event.target.value);
     };
+const inputClass = cn('input',{'input_disabled': props.disabled}, `${props.className}`)
 
-    return <input {...rest} className="input" value={value} onChange={handleInputChange}/>;
+
+    return <input type='text' {...props} className={inputClass} value={value} onChange={handleInputChange}/>;
 };

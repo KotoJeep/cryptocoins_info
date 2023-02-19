@@ -1,0 +1,27 @@
+.input {
+  padding: 12px;
+  width: 294px;
+  //height: 39px;
+  border: 1px solid #DFE2E4;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  outline: none;
+  color: var(--text-color);
+
+  &::placeholder {
+    color: var(--fade-color);
+  }
+
+  &:focus {
+    color: var(--text-color);
+    border-color: var(--text-color-disabled);
+  }
+
+  &:disabled {
+    color: var(--text-color-disabled);
+    background-color: var(--bg-disabled);
+  }
+
+}

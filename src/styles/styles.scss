@@ -7,19 +7,21 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Circular Std', sans-serif;
 }
 
 body {
   //margin: 0;
   //padding: 0;
   font-size: 14px;
-  font-family: 'Circular Std', sans-serif;
 }
 
 :root {
   --color-primary: #6C757D;
+  --fade-color: #DFE2E4;
   --color-positive: #21BF73;
   --text-color: #343A40;
   --text-color-disabled: #6C757D;
+  --bg-disabled: #F8F9FA;
 }
 
