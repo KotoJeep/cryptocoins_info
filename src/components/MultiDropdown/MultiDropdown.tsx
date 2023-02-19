@@ -1,4 +1,5 @@
 import React from 'react';
+import './Multidropdown.scss'
 
 export type Option = {
   /** Ключ варианта, используется для отправки на бек/использования в коде */
