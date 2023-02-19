@@ -9,8 +9,9 @@ export type WithLoaderProps = React.PropsWithChildren<{
 export const WithLoader: React.FC<WithLoaderProps> = ({loading, children}) => {
     return (
         <div className='with-loader'>
-            {loading && <div className="with-loader__active"><Loader /></div>}
+            {loading && <div className='with-loader__active'/>}
             {children}
         </div>
     );
 }
+// <div className="with-loader__active"><Loader /></div>

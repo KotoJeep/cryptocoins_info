@@ -7,17 +7,16 @@
   border-radius: 100%;
   border: var(--borderWidth) solid var(--color-primary);
   border-left-color: transparent;
-  //transform: rotate(225deg);
-  animation: rotate .5s linear infinite;
+  animation: rotate .9s linear infinite;
 
   &_s {
     --size: 20px;
-    --borderWidth: 4px
+    --borderWidth: 3px
   }
 
   &_m {
     --size: 40px;
-    --borderWidth: 5px
+    --borderWidth: 4.5px
   }
 
   &_l {

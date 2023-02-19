@@ -11,12 +11,12 @@ export type ButtonProps = React.PropsWithChildren<{
     loading?: boolean;
 }> & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button: React.FC<ButtonProps> = ({children, className, loading, ...props}: ButtonProps) => {
+export const Button: React.FC<ButtonProps> = ({children, className, loading=false, ...props}: ButtonProps) => {
 
     const btnClasses = cn('button', `${className}`, {'button_disabled': loading || props.disabled})
 
     return <button className={btnClasses} disabled={loading || props.disabled} {...props}>
-        <Loader loading={false} size={LoaderSize.s}/>
+        {loading && <Loader size={LoaderSize.s}/>}
         {children}
     </button>
 };
