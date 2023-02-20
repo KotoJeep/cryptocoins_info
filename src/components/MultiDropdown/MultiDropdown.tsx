@@ -1,5 +1,7 @@
-import React from 'react';
-import './Multidropdown.scss'
+import React, {DetailedHTMLProps, HTMLAttributes, useState} from 'react';
+import './Multidropdown.module.scss'
+import classNames from "classnames";
+import {Button} from "../Button/Button";
 
 export type Option = {
   /** Ключ варианта, используется для отправки на бек/использования в коде */
@@ -22,4 +24,58 @@ export type MultiDropdownProps = {
   pluralizeOptions: (value: Option[]) => string;
 };
 
-export const MultiDropdown: React.FC<MultiDropdownProps> = () => null;
+
+const defaultPluralizeOptions = (elements: Option[]) =>
+    elements.map((el: Option) => el.key).join();
+
+export const MultiDropdown: React.FC<MultiDropdownProps> = ({ options,                                                       value, onChange,  disabled = false, pluralizeOptions = defaultPluralizeOptions, ...props}) =>{
+    const [isOpen, setIsOpen] = useState(false)
+
+    function includes(opts: Option[], opt: Option) {
+        return opts.some((o) => opt.key === o.key)
+    }
+
+    const Value = pluralizeOptions(value)
+    return (
+        <Button
+            {...props}
+
+            className={classNames(styles.MultiDropdown, props.className)}
+        >
+            <Value
+                {...valueProps}
+                className={classNames(valueProps?.className, styles.value)}
+                onClick={(e) => {
+                    setIsOpen((v) => !v)
+                    if (valueProps?.onClick) {
+                        valueProps.onClick(e)
+                    }
+                }}
+            />
+            {isOpen && !disabled ? (
+                <div
+                    {...optionsProps}
+                    className={classNames(styles.optionsParent, optionsProps?.className)}
+                >
+                    {options.map((option) => (
+                        <div
+                            key={option.key}
+                            className={classNames(styles.option, {
+                                [styles.selected]: includes(value, option),
+                            })}
+                            onClick={() => {
+                                if (!includes(value, option)) {
+                                    onChange([...value, option])
+                                } else {
+                                    onChange(value.filter((o) => o.key !== option.key))
+                                }
+                            }}
+                        >
+                            {option.value}
+                        </div>
+                    ))}
+                </div>
+            ) : null}
+        </Button>
+    )
+};
