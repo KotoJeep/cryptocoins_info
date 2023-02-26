@@ -20,16 +20,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <div style={{ margin: '200px' }}>
-      <MultiDropdown
-        options={[
-          { key: 'msk', value: 'Москва' },
-          { key: 'spb', value: 'Санкт-Петербург' },
-          { key: 'ekb', value: 'Екатеринбург' },
-        ]}
-        value={[{ key: 'msk', value: 'Москва' }]}
-        onChange={(value: Option[]) => console.log('Выбрано:', value)}
-        pluralizeOptions={defaultPluralizeOptions}
+      <Input
+        value="text"
+        onChange={(value: string) => console.log(value)}
         disabled
+        placeholder="text"
       />
     </div>
   </React.StrictMode>
