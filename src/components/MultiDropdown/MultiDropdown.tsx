@@ -1,7 +1,13 @@
-import React, {DetailedHTMLProps, HTMLAttributes, useState} from 'react';
-import './Multidropdown.module.scss'
-import classNames from "classnames";
-import {Button} from "../Button/Button";
+import React, {
+  DetailedHTMLProps,
+  HTMLAttributes,
+  useEffect,
+  useState,
+} from 'react';
+import './Multidropdown.scss';
+import classNames from 'classnames';
+import { Button } from '../Button/Button';
+import cn from 'classnames';
 
 export type Option = {
   /** Ключ варианта, используется для отправки на бек/использования в коде */
@@ -24,58 +30,68 @@ export type MultiDropdownProps = {
   pluralizeOptions: (value: Option[]) => string;
 };
 
+export const MultiDropdown: React.FC<MultiDropdownProps> = ({
+  options,
+  value,
+  onChange,
+  disabled = false,
+  pluralizeOptions,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [inputValue, setInputValue] = useState(value);
 
-const defaultPluralizeOptions = (elements: Option[]) =>
-    elements.map((el: Option) => el.key).join();
+  const handleDropdownClick = () => {
+    setIsOpen(!isOpen);
+  };
 
-export const MultiDropdown: React.FC<MultiDropdownProps> = ({ options,                                                       value, onChange,  disabled = false, pluralizeOptions = defaultPluralizeOptions, ...props}) =>{
-    const [isOpen, setIsOpen] = useState(false)
+  const handleOptionClick = (option: Option) => {
+    const newValue = [...value];
+    const optionIndex = newValue.findIndex((v) => v.key === option.key);
 
-    function includes(opts: Option[], opt: Option) {
-        return opts.some((o) => opt.key === o.key)
+    if (optionIndex === -1) {
+      newValue.push(option);
+    } else {
+      newValue.splice(optionIndex, 1);
     }
 
-    const Value = pluralizeOptions(value)
-    return (
-        <Button
-            {...props}
+    onChange(newValue);
+    // setInputValue(newValue);
+  };
 
-            className={classNames(styles.MultiDropdown, props.className)}
-        >
-            <Value
-                {...valueProps}
-                className={classNames(valueProps?.className, styles.value)}
-                onClick={(e) => {
-                    setIsOpen((v) => !v)
-                    if (valueProps?.onClick) {
-                        valueProps.onClick(e)
-                    }
-                }}
-            />
-            {isOpen && !disabled ? (
-                <div
-                    {...optionsProps}
-                    className={classNames(styles.optionsParent, optionsProps?.className)}
-                >
-                    {options.map((option) => (
-                        <div
-                            key={option.key}
-                            className={classNames(styles.option, {
-                                [styles.selected]: includes(value, option),
-                            })}
-                            onClick={() => {
-                                if (!includes(value, option)) {
-                                    onChange([...value, option])
-                                } else {
-                                    onChange(value.filter((o) => o.key !== option.key))
-                                }
-                            }}
-                        >
-                            {option.value}
-                        </div>
-                    ))}
-                </div>
-            ) : null}
-        </Button>
-    )
+  const checkSelection = (key: string) => {
+    return inputValue.some((el) => el.key === key);
+  };
+
+  const renderedOptions = options.map((option) => {
+    // const isSelected = value.some((v) => v.key === option.key);
+
+    return (
+      <li
+        key={option.key}
+        className={cn('multi-dropdown_list-item', {
+          selected: checkSelection(option.key),
+        })}
+        onClick={() => handleOptionClick(option)}
+      >
+        {option.value}
+      </li>
+    );
+  });
+
+  const multiDropdownClass = cn('multi-dropdown_text', {
+    disabled: disabled,
+  });
+
+  return (
+    <div className="multi-dropdown">
+      <div className={multiDropdownClass} onClick={handleDropdownClick}>
+        {pluralizeOptions(value)}
+        <span className={'arrow-down'}></span>
+      </div>
+
+      {isOpen && !disabled ? (
+        <ul className="multi-dropdown_list">{renderedOptions}</ul>
+      ) : null}
+    </div>
+  );
 };
