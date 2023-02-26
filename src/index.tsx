@@ -19,13 +19,17 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <div style={{ margin: '200px' }}>
-      <Input
-        value="text"
-        onChange={(value: string) => console.log(value)}
-        disabled
-        placeholder="text"
-      />
+    <div
+      style={{
+        width: '200px',
+        height: '100px',
+        padding: '14px',
+        border: '1px solid red',
+        margin: '200px',
+        fontSize: '16px',
+      }}
+    >
+      <WithLoader loading={true}>Page content</WithLoader>
     </div>
   </React.StrictMode>
 );
