@@ -33,7 +33,3 @@ root.render(
     </div>
   </React.StrictMode>
 );
-
-// Page content
-// style={{width:'400px', height:'200px', border: '1px solid red'}}
-// <Input placeholder={'text'} disabled={false} value={'text'} onChange={()=>console.log('click!')}/>

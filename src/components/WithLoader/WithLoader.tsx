@@ -21,5 +21,3 @@ export const WithLoader: React.FC<WithLoaderProps> = ({
     </div>
   );
 };
-// <div className="with-loader__active"><Loader /></div>
-// loading && <div className='with-loader__active' />
