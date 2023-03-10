@@ -1,0 +1,21 @@
+@import './CircularStd/fonts';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: 'Circular Std', sans-serif;
+}
+
+:root {
+  --color-primary: #6C757D;
+  --fade-color: #DFE2E4;
+  --color-positive: #21BF73;
+  --text-color: #343A40;
+  --text-color-disabled: #6C757D;
+  --bg-disabled: #F8F9FA;
+}
+
