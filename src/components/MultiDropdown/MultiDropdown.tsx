@@ -28,6 +28,7 @@ export type MultiDropdownProps = {
   disabled?: boolean;
   /** Преобразовать выбранные значения в строку. Отображается в дропдауне в качестве выбранного значения */
   pluralizeOptions: (value: Option[]) => string;
+  placeholder?: string;
 };
 
 export const MultiDropdown: React.FC<MultiDropdownProps> = ({

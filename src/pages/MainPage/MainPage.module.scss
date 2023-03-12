@@ -1,0 +1,26 @@
+@mixin flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page_wrapper {
+  padding: 17px;
+  background-color: var(--bg-disabled);
+}
+
+.search {
+  @include flex;
+  column-gap: 10px;
+}
+
+.category {
+  margin-top: 17px;
+  @include flex;
+  &_header {
+  }
+}
+
+.coin_list{
+  margin-top: 16px;
+}

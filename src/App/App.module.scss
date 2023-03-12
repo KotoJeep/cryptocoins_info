@@ -1,0 +1,12 @@
+.wrapper{
+  height: 100%;
+  width: 100%;
+  &__color{
+    background-color: var(--bg-disabled);
+  }
+}
+.container{
+  margin: 0 auto;
+  max-width: 375px;
+  height: 100%;
+}
